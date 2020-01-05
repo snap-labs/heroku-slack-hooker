@@ -14,14 +14,31 @@ app.use(bodyParser.urlencoded({ extended: true  }));
 
 // routes
 app.post('/hook/*', function (req, res) {
-    var h = req.body;
+    var data = req.body;
     var slackHook = req.params['0'];
     console.log('heroku hook body: ', h);
     console.log('target slack webhook url: ', slackHook);
 
     var slack = {
-        text: util.format('%s deployed version %s of <%s|%s>\n%s',
-                          h.user, h.head, h.url, h.app, h.git_log),
+        attachments: [
+            {
+                fallback: "Required plain-text summary of the attachment.",
+                color: "#36a64f",
+                author_name: data.data.app.name,
+                author_link: data.data.app.name,
+                title: "Heroku " + data.data.resource.toUpperCase(),
+                text: "Optional text that appears within the attachment",
+                fields: [
+                    {
+                        title: "Priority",
+                        value: "High",
+                        short: false
+                    }
+                ],
+                footer: "Heroku Notification",
+                ts: Date.now()
+            }
+        ],
         username: 'heroku-bot',
         icon_emoji: ':space_invader:'
     };
