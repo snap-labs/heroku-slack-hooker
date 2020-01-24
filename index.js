@@ -40,7 +40,7 @@ app.post("/hook/*", function(req, res) {
           }
         ],
         footer: "Heroku Notification",
-        ts: Date.now()
+        ts: Math.floor(Date.now() / 1000)
       }
     ],
     username: "heroku-bot",
