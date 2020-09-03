@@ -1,0 +1,38 @@
+{
+  "name": "heroku-slack-hooker",
+  "description": "Simple Webhook reposter to translate Heroku deploy hook to slack webhook",
+  "keywords": [
+    "microservice",
+    "slack",
+    "heroku",
+    "webhook",
+    "snap"
+  ],
+  "website": "https://deployhooker.getasnap.com",
+  "repository": "https://github.com/snap-labs/heroku-slack-hooker",
+  "logo": "https://www.getasnap.com/images/logos/snap-logo.svg",
+  "success_url": "https://deployhooker.getasnap.com",
+  "scripts": {
+  },
+  "env": {
+    "SLACK_WEBHOOK": {
+      "description": "Allowed Webhook",
+      "value": "CHANGEME"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "free"
+    }
+  },
+  "addons": [
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "environments": {
+  }
+}
